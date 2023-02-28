@@ -1,0 +1,7 @@
+"""
+These are functions for elementary tests in criteria.
+For genericity, they must all accept the same inputs arguments:
+1. first variable;
+2. second variable;
+3. fixed tolerance.
+"""

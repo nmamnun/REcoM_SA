@@ -1,0 +1,80 @@
+#
+# *********************
+# External Forcing Data
+# *********************
+ &EXF_NML_01
+#
+ useExfCheckRange = .TRUE.,
+ useExfYearlyFields = .TRUE.,
+# repeatPeriod      = 31536000.,
+ exf_iprec = 32,
+ ht = 10.0,
+ &
+#
+# *********************
+ &EXF_NML_02
+#
+ atempstartdate1   = 19900101,
+ atempstartdate2   = 000000,
+ atempperiod       = 21600.0,
+#
+ aqhstartdate1     = 19900101,
+ aqhstartdate2     = 000000,
+ aqhperiod         = 21600.0,
+#
+ precipstartdate1  = 19900116,
+ precipstartdate2  = 000000,
+ precipperiod      = 2628000.0,
+#
+ uwindstartdate1   = 19900101,
+ uwindstartdate2   = 000000,
+ uwindperiod       = 21600.0,
+
+ vwindstartdate1   = 19900101,
+ vwindstartdate2   = 000000,
+ vwindperiod       = 21600.0,
+#
+ swdownstartdate1  = 19900101,
+ swdownstartdate2  = 120000,
+ swdownperiod      = 86400.0,
+#
+ lwdownstartdate1  = 19900101,
+ lwdownstartdate2  = 120000,
+ lwdownperiod      = 86400.0,
+#
+ apressurestartdate1 = 19900101,
+ apressurestartdate2 = 000000,
+ apressureperiod     = 21600.0,
+#
+ climsssstartdate1  = 19900116,
+ climsssstartdate2  = 000000,
+ climsssperiod      = 2628000.0,
+ climsssTauRelax    = 2628000.0,
+# climsssTauRelax    = 864000.,
+# climsssTauRelax    = 432000.,
+#
+ hfluxfile         = ' ',
+ sfluxfile         = ' ',
+ ustressfile       = ' ',
+ vstressfile       = ' ',
+ precipfile        = 'iaf_prc_kerfix',
+ atempfile         = 'iaf_t_10_kerfix',
+ lwdownfile        = 'iaf_lwdn_kerfix',
+ swdownfile        = 'iaf_swdn_kerfix',
+ uwindfile         = 'iaf_u_10_kerfix',
+ vwindfile         = 'iaf_v_10_kerfix',
+ apressurefile     = 'iaf_slp_kerfix',
+ aqhfile           = 'iaf_q_10_kerfix',
+ climsssfile       = 'sss_woa18_clim_kerfix.bin'
+ lwfluxfile        = ' ',
+ swfluxfile        = ' ',
+ runoffFile        = ' '
+ &
+
+# *********************
+ &EXF_NML_03
+ &
+
+# *********************
+ &EXF_NML_04
+ &

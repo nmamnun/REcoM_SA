@@ -1,0 +1,159 @@
+# ====================
+# | Model parameters |
+# ====================
+#
+# Continuous equation parameters
+#
+#   tRef            - Reference vertical potential temperature          (deg C)
+#   sRef            - Reference vertical salinity                         (PSU)
+#   viscAh          - Horizontal eddy viscosity coefficient             (m^2/s)
+#   viscAz          - Vertical eddy viscosity coefficient               (m^2/s)
+#   diffKhT         - Horizontal temperature diffusivity                (m^2/s)
+#   diffKzT         - Vertical temperature diffusivity                  (m^2/s)
+#   diffKhS         - Horizontal salt diffusivity                       (m^2/s)
+#   diffKzS         - Vertical salt diffusivity                         (m^2/s)
+#   f0              - Reference coriolis parameter,
+#                     south edge of f on beta plane                       (1/s)
+#   beta            - df/dy                                         (s^-1.m^-1)
+#   tAlpha          - Linear EOS thermal expansion coefficient           (1/oC)
+#   sBeta           - Linear EOS haline contraction coefficient         (1/ppt)
+#   gravity         - Acceleration due to gravity                       (m/s^2)
+#   gBaro           - Accel. due to gravity used in barotropic equation (m/s^2)
+#   rigidLid        - Set to true to use rigid lid
+#   implicitFreeSurface - Set to true to use implicit free surface
+#   eosType         - Flag for linear or polynomial equation of state
+#   momAdvection    - On/Off flag for momentum self transport
+#   momViscosity    - On/Off flag for momentum mixing
+#
+ &PARM01
+# WOA18 annual average T,S profiles @ 30 levels
+ tRef               = 3.18056667, 3.17450503, 3.16574454, 3.13695616,
+                      3.1247761,  3.10993252, 3.09299636, 3.05866558,
+                      3.01002253, 2.931125,   2.82202929, 2.69873351,
+                      2.56943775, 2.43653255, 2.29738285, 2.17367408,
+                      2.11044786, 2.2069346, 2.32516631, 2.40995586,
+                      2.45146074, 2.47569961, 2.49851898, 2.31801743,
+                      2.34543877, 2.3338861,  2.32786034, 2.32650289,
+                      2.29005154, 2.2522625,
+ sRef               = 33.85702442, 33.85840412, 33.85904998, 33.85958154,
+                      33.86041369, 33.86118139, 33.86224392, 33.86436119,
+                      33.8661874,  33.86952623, 33.87350369, 33.87860634,
+                      33.88481817, 33.89535958, 33.90894658, 33.92898827,
+                      33.96416937, 34.01495214, 34.07254831, 34.14698577,
+                      34.21333879, 34.27799676, 34.34572362, 34.42346677,
+                      34.4975994,  34.5600643,  34.60952511, 34.64794636,
+                      34.67713525, 34.70272913,
+ no_slip_sides=.FALSE.,
+ no_slip_bottom=.TRUE.,
+ viscAz=1.93e-5,
+ viscAh=5.E4,
+ diffKhT=0.0,
+ diffKzT=1.46e-7,
+ diffKhS=0.0,
+ diffKzS=1.46e-7,
+# beta=1.E-11,
+# 1-D setups work best with an f-plane due to unequal Coriolis force on north
+# and south faces
+ selectCoriMap=0,
+ rigidLid=.FALSE.,
+ implicitFreeSurface=.TRUE.,
+ eosType='JMD95Z',
+ readBinaryPrec=32,
+ writeBinaryPrec=32,
+ saltStepping=.TRUE.,
+ tempStepping=.TRUE.,
+ momStepping=.TRUE.,
+ implicitDiffusion=.TRUE.,
+ implicitViscosity=.TRUE.,
+ allowFreezing=.FALSE.,
+#- set wrong celsius2K to reproduce old results:
+ celsius2K=273.16,
+ HeatCapacity_Cp = 3986.0,
+ gravity         = 9.8156,
+ rhoConst        = 1027.0,
+ rhoConstFresh   = 999.8,
+ useCDscheme=.FALSE.,
+ staggerTimeStep=.TRUE.,
+ multiDimAdvection=.false.,
+ tempAdvScheme=30,
+ saltAdvScheme=30,
+ vectorInvariantMomentum=.TRUE.,
+ useRealFreshWaterFlux = .TRUE.,
+# debugLevel=1,
+ &
+
+# Elliptic solver parameters
+#
+#   cg2dMaxIters       - Maximum number of 2d solver iterations
+#   cg2dTargetResidual - Solver target residual
+#
+ &PARM02
+ cg2dMaxIters=1000,
+ cg2dTargetResidual=1.D-13,
+ &
+
+# Time stepping parameters
+#
+#   startTime         - Integration starting time                (s)
+#   endTime           - Integration ending time                  (s)
+#   tauCD             - CD scheme coupling timescale             (s)
+#   deltaTMom         - Timestep for momemtum equations          (s)
+#   deltaTtracer      - Tracer timestep                          (s)
+#   deltaTClock       - Timestep used as model "clock"           (s)
+#   abEps             - Adams-Bashforth stabilising factor
+#   pChkPtFreq        - Frequency of permanent check pointing    (s)
+#   chkPtFreq         - Frequency of rolling check pointing      (s)
+#   dumpFreq          - Frequency at which model state is stored (s)
+#   tauThetaClimRelax - Relaxation to climatology time scale     (s)
+#   tauSaltClimRelax  - Relaxation to climatology time scale     (s)
+#
+ &PARM03
+ startTime=0.0,
+ nTimeSteps=87600,
+# nTimeSteps= 11000,
+ deltaTtracer=3600.0,
+ deltaTClock =3600.0,
+ cAdjFreq=0.,
+ abEps=0.1,
+ tracForcingOutAB=1,
+ pChkptFreq=0.,
+ chkptFreq= 0.,
+ dumpFreq = 0.,
+ taveFreq = 0.,
+ monitorFreq=864000.,
+# adjDumpFreq=86400.,
+# adjMonitorFreq = 86400.,
+# monitorFreq=3600.,
+ adjDumpFreq=3600.,
+ adjMonitorFreq=3600.,
+ &
+
+# Gridding parameters
+#
+#   usingSphericalPolarGrid - On/Off flag for spherical polar coordinates
+#   delX                    - Zonal grid spacing         (degrees)
+#   delY                    - Meridional grid spacing    (degrees)
+#   delZ                    - Vertical grid spacing      (m)
+#   ygOrigin                - Southern boundary latitude (degrees)
+#
+ &PARM04
+ usingCartesianGrid=.TRUE.,
+ dXspacing=5000.,
+ dYspacing=5000.,
+# usingSphericalPolarGrid=.TRUE.,
+# delX=1*2.E0,
+# delY=1*2.E0,
+ delZ   = 10.00, 10.00, 10.00, 10.00, 10.00, 10.00, 10.00, 10.01,
+ 10.03, 10.11, 10.32, 10.80, 11.76, 13.42, 16.04 , 19.82, 24.85,
+ 31.10, 38.42, 46.50, 55.00, 63.50, 71.58, 82.21, 92.35, 100.00,
+ 100.00, 100.00, 100.00, 100.00,
+# ygOrigin=65.,
+# xgOrigin=280.,
+# rSphere = 6371.D3,
+ &
+
+ &PARM05
+ bathyFile = 'bathy_1x1_1105m_testpool',
+ hydrogThetaFile='oceantemp_jan_dec_clim_kerfix.bin',
+ hydrogSaltFile= 'oceansalt_jan_dec_clim_kerfix.bin',
+ &

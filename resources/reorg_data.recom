@@ -1,0 +1,246 @@
+#------------------------#
+# Namelist for REcoM-2   #
+#------------------------#
+#
+ &REcoM_parameters
+# ---------------------
+# general parameters
+# ---------------------
+# 1001 minimum concentration of biogeochemical variables
+  tiny=1.e-8,
+# 1002 number of  timesteps per external timestep
+  bio_step=24,
+# 1. reference temperature [Kelvin]
+  recom_Tref=288.15,
+# 101 slope of the linear part of the Arrhenius function [Kelvin]
+  Ae=4500.0,
+# 2. Light attenuation coefficient due to water [m^{-1}]
+  k_w=0.04,
+# 3. chlorophyll specific attenuation coefficients [m^{-1} (mg CHL)^{-1}]
+  a_chl=0.03,
+# 4. Half-saturation constant for nitrate uptake [mmol N m^{-3}]
+  k_din=0.55,
+# 5. Half-saturation constant for nitrate uptake [mmol N m^{-3}]
+  k_din_d=1.0,
+# 6. half saturation constant for silica uptake [mmol Si m^{-3}]
+  k_Si=4.,
+# 7. half saturation constant for iron uptake  [mumol Fe m^{-3}]
+  k_Fe=0.02,
+# 8. half saturation constant for iron uptake  [mumol Fe m^{-3}]
+  k_Fe_d=0.12,
+# 9. N:C uptake ratio for Nano (mol/mol)
+  NCuptakeRatio=0.20,
+# 10. N:C uptake ratio for Dia (mol/mol)
+  NCuptakeRatio_d=0.20,
+# 11. Si:C uptake ratio for Dia (mol/mol)
+  SiCuptakeRatio=0.20,
+# 12 Temperature dependent maximum of C-specific nitrogen uptake
+#     [mmol N (mmol C)^{-1} d^{-1}]
+# V_cm= ,
+# dimensionless factor
+  V_cm_fact=0.7,
+# 13. Temperature dependent maximum of C-specific nitrogen uptake
+#     [mmol N (mmol C)^{-1} d^{-1}]
+# V_cm= ,
+# dimensionless factor
+  V_cm_fact_d=0.7,
+# 14. scavenging (to turn off set kScavFe=0.)
+  kScavFe = 0.0156,
+# 15. CHL-specific intial slope of P-I curve [depends on unit of radiation]
+  alpha=0.14,
+# 16. CHL-specific intial slope of P-I curve [depends on unit of radiation]
+  alpha_d=0.19,
+# 17. Temperature dependent maximum of C-specific rate of photosynthesis
+#     [d^{-1}], set to zero to turn off biology
+  P_cm=3.0,
+# 18. Temperature dependent maximum of C-specific rate of photosynthesis
+#     [d^{-1}], set to zero to turn off biology
+  P_cm_d=3.5,
+# 19. constant Redfield C:N ratio
+  redfield=6.625,
+# 20. iron to carbon ratio
+# instead use reference Fe2N ratio
+#     Fe2C = 0.005,
+  Fe2N=0.033,
+# 21. iron to carbon ratio
+#     instead use reference Fe2N ratio
+#     Fe2C_d = 0.005,
+  Fe2N_d=0.033,
+# 22. ratio of calcifiers to non calcifiers
+  calc_prod_ratio=0.01,
+# 23. Minimum cell quota of nitrogen (N:C) [mmol N (mmol C)^{-1}]
+  NCmin=0.04,
+# 24. Maximum cell quota of nitrogen (N:C) [mmol N (mmol C)^{-1}]
+  NCmax=0.20,
+# 25. Minimum cell quota of nitrogen (N:C) [mmol N (mmol C)^{-1}]
+  NCmin_d=0.04,
+# 26. Maximum cell quota of nitrogen (N:C) [mmol N (mmol C)^{-1}]
+  NCmax_d=0.20,
+# 27. Minimum cell quota of silica (Si:C) [mmol Si (mmol C)^{-1}]
+  SiCmin=0.04,
+# 28. Maximum cell quota of silica (Si:C) [mmol Si (mmol C)^{-1}]
+  SiCmax=0.80,
+# 29. Maximum Chlorophyll a to nitrogen ratio
+# [mg CHL (mmol N)^{-1} = 0.3 gCHL (gN)^{-1}]
+  CHL_N_max=3.78,
+# 30. Maximum Chlorophyll a to nitrogen ratio
+# [mg CHL (mmol N)^{-1} = 0.3 gCHL (gN)^{-1}]
+  CHL_N_max_d=4.2,
+# 31. minimum silica to nitrogen ratio
+  SiNmin=0.3,
+# 32. Maintenance respiration rate constant [d^{-1}]
+  res_phy=0.01,
+# 33. Maintenance respiration rate constant [d^{-1}]
+  res_phy_d=0.01,
+# 34. Cost of biosynthesis [mmol C (mmol N)^{-1}]
+  biosynth=2.33,
+# 35. Cost of biosynthesis [mmol C (mmol N)^{-1}]
+  biosynth_d=2.33,
+# 36. Cost of biosynthesis for Si [mmol C (mmol N)^{-1}]
+  biosynthSi=0.5,
+# 37. CHL degradation rate constant [d^{-1}]
+  deg_CHL=0.1,
+# 38. CHL degradation rate constant [d^{-1}]
+  deg_CHL_d=0.1,
+# 39. phytoplankton loss of C [d^{-1}]
+  lossC=0.10,
+# 40. phytoplankton loss of C [d^{-1}]
+  lossC_d=0.10,
+# 41. phytoplankton loss of organic N compounds [d^{-1}]
+  lossN=0.05,
+# 42. phytoplankton loss of organic N compounds [d^{-1}]
+  lossN_d=0.05,
+# 43. maximum grazing loss parameter [mmol N m^{-3} d^{-1}]
+  graz_max=2.4,
+# 44. grazing efficiency [dimensionless]
+  grazEff=0.4,
+# 45. half saturation grazing loss [mmol N^{2} m^{-6}]
+  epsilon=0.35,
+# 102. phytoplankton sinking velocity [ m d^{-1} ]
+  Vphy=0.,
+# 103. diatom sinking velocity [ m d^{-1} ] #
+  Vdia=0.,
+# maximum aggregation loss parameters
+# 46. Detritus specific aggregation rate [m^{3} mmol N^{-1} d^{-1}]
+  agg_PD=0.165,
+# 47.Phytoplankton specific aggregation rate [m^{3} mmol N^{-1} d^{-1}]
+  agg_PP=0.015,
+# 48. respiration by heterotrophs and mortality (loss to detritus) [d^{-1}]
+  res_het=0.01,
+# 49. quadratic mortality rate of zooplankton [(mmol N m^{−3})^{−1} d^{−1}]
+  loss_het=0.05,
+# 50. loss of zooplank to dissolved organic compounds
+  lossC_z=0.15,
+# 51. Zooplankton nitrogen excretion rate [d^{-1}]
+  lossN_z=0.15,
+# 52. temperature dependent remineralisation rate of detritus [d^{-1}]
+  reminN=0.165,
+# 53. Particulate organic carbon degradation rate of detritus [d^{-1}]
+  reminC=0.15,
+# 1003 Turn on/off reminSi
+  useReminSiT = .true.,
+# 54. Maximum silicate dissolution rate [d^{-1}]
+  reminSi=0.02,
+# 55. detritus sinking velocity [ m d^{-1} ]
+  Vdet=20.,
+# -------- TEP fraction of EOM -----------------------------------
+# 1004 turn on/off TEP aggregation
+  TEPaggregation=.false.,
+# 1005 TEP fraction (dimensionless)
+  f_TEP=0.,
+# 1006 TEP fraction (f_TEP-x) found in POM (dimensionless)
+  x=0.0,
+# 56. stickiness for PCHO-PCHO
+  agg_PCHO=0.0075,
+# 57. stickiness for TEP-PCHO
+  agg_TEP=-1.240,
+# -------- end TEP fraction of EOM -------------------------------
+# 58 Total ligand concentration of iron [μmol m^{-3}]
+  totalLigand = 1.,
+# 59. Ligand stability constant of iron [m^{3} μmol^{-1}]
+  ligandStabConst = 200.,
+# 60. temperature dependent N degradation of extracellular organic N (EON)
+# [d^{-1}]
+  rho_N=0.11,
+# 61. temperature dependent C degradation of extracellular organic C (EOC)
+# [d^{-1}]
+  rho_C1=0.1,
+# 62. Extracellular organic carbon remineralization rate [d^{-1}]
+  rho_C2=0.1,
+# ================================================================
+# -------- benthic layer -----------------------------------------
+# 104 Benthos iron to nitrogen ration [molFe(molN)^{-1}]
+  Fe2N_benthos = 0.33,
+# decay rate of detritus in the benthic layer, product of remin*rho
+# [d^{-1}], turn off benthic layer with values < 0.
+# 105 Particulate organic carbon degradation rate in sediment
+  decayRateBenN=0.005,
+# 106 Particulate organic nitrogen degradation rate in sediment
+  decayRateBenC=0.005,
+# 107 Silicate degradation rate in sediment
+  decayRateBenSi=0.005,
+# 108 Calcium carbonate degradation rate in sediment
+  decayRateBenCa=0.005
+# ================================================================
+# 1007 turn on/off sinking of detritus and phytoplankton
+  SINKadv=.true.,
+# 1008 light utilization according to Evans+Parslow (1985), requires the
+# daily mean insolation as input, e.g. shortwave radiation of a NCEP or
+# ECMWF product
+  EvansParslow=.false.,
+# 1009 have S/R REcoM_para_read produce some extra output
+  write_flag=.false.,
+# 1010 turn on/off iron limitation
+  FeLimit=.true.,
+#
+ &
+#
+ &RECOM_PARM01
+# 1011 File name containing atmospheric iron deposition
+  recom_ironFile='dust_Albani2014_32b.bin',
+# 1012
+  brockReedInsolation = .false.,
+# 1013
+  diurnalInsolation = .false.,
+# 1014 this must be true for more that 1D
+  computeHalos      = .false.,
+# 1015
+  solarConstant = 1353.,
+# 1016
+  parfrac = 0.43,
+# 1017
+  cloudCover = 0.5,
+# 1018
+  daysPerYear = 360.,
+# 1019
+  constantIronSolubility = .02,
+# 1020 this is just a parameter for a diagnostic
+  recom_FeErosionRate = 0.0,
+#
+ &
+# 1021 - 1026 recom exf
+ &RECOM_PARM02
+  pCO2startdate1   = 00010115,
+#pCO2startdate2   = 120000,
+  pCO2period       = 2592000.0,
+  pCO2repeatperiod = 31104000.,
+#
+  feduststartdate1 = 19790116,
+# feduststartdate2 = 120000,
+  fedustperiod     = 2635200.0,
+  fedustrepeatperiod = 31536000.0,
+#
+ &
+# 1027 - 1030
+ &RECOM_ATMOSPCO2
+  recom_pco2_int1=2,
+# number of entries
+  recom_pco2_int2=1001,
+# start time step in tracer time-steps!!
+# mid of month: tracer time-step = 12h, mid of month would be
+# tracer time-step*2*15
+  recom_pco2_int3=0,
+# interval between entries in tracer time steps!!
+# this is fake again, 25 years, doesn't matter because kept at preindustrial
+  recom_pco2_int4=720,
+ &

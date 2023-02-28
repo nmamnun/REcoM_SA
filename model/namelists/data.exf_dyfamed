@@ -1,0 +1,80 @@
+#
+# *********************
+# External Forcing Data
+# *********************
+ &EXF_NML_01
+#
+ useExfCheckRange = .TRUE.,
+ useExfYearlyFields = .TRUE.,
+# repeatPeriod      = 31536000.,
+ exf_iprec = 32,
+# ht = 10.0,
+ ht  = 2.0,
+ &
+#
+# *********************
+ &EXF_NML_02
+#
+ atempstartdate1   = 19900101,
+ atempstartdate2   = 000000,
+ atempperiod       = 3600.0,
+#
+ aqhstartdate1     = 19900101,
+ aqhstartdate2     = 000000,
+ aqhperiod         = 3600.0,
+#
+ precipstartdate1  = 19900101,
+ precipstartdate2  = 000000,
+ precipperiod      = 3600.0,
+#
+ uwindstartdate1   = 19900101,
+ uwindstartdate2   = 000000,
+ uwindperiod       = 3600.0,
+
+ vwindstartdate1   = 19900101,
+ vwindstartdate2   = 000000,
+ vwindperiod       = 3600.0,
+#
+ swdownstartdate1  = 19900101,
+ swdownstartdate2  = 000000,
+ swdownperiod      = 3600.0,
+#
+ lwdownstartdate1  = 19900101,
+ lwdownstartdate2  = 000000,
+ lwdownperiod      = 3600.0,
+#
+ apressurestartdate1 = 19900101,
+ apressurestartdate2 = 000000,
+ apressureperiod     = 3600.0,
+#
+ climsssstartdate1  = 19900101,
+ climsssstartdate2  = 000000,
+ climsssperiod      = 2628000.0,
+ climsssTauRelax    = 86400.0,
+# climsssTauRelax    = 864000.0,
+#
+ hfluxfile         = ' ',
+ sfluxfile         = ' ',
+ ustressfile       = ' ',
+ vstressfile       = ' ',
+ precipfile        = 'era5_tp_dyfame',
+ atempfile         = 'era5_t2m_dyfame',
+ lwdownfile        = 'era5_msdwlwrf_dyfame',
+ swdownfile        = 'era5_msdwswrf_dyfame',
+ uwindfile         = 'era5_u10_dyfame',
+ vwindfile         = 'era5_v10_dyfame',
+ apressurefile     = 'era5_msl_dyfame',
+ aqhfile           = 'era5_q_dyfame',
+ climsssfile       = 'dyfamed_bottle_sss_monthly_clim',
+ lwfluxfile        = ' ',
+ swfluxfile        = ' ',
+ runoffFile        = ' '
+ &
+
+# *********************
+ &EXF_NML_03
+ &
+
+# *********************
+ &EXF_NML_04
+ &

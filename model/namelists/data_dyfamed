@@ -1,0 +1,168 @@
+# ====================
+# | Model parameters |
+# ====================
+#
+# Continuous equation parameters
+#
+#   tRef            - Reference vertical potential temperature          (deg C)
+#   sRef            - Reference vertical salinity                         (PSU)
+#   viscAh          - Horizontal eddy viscosity coefficient             (m^2/s)
+#   viscAz          - Vertical eddy viscosity coefficient               (m^2/s)
+#   diffKhT         - Horizontal temperature diffusivity                (m^2/s)
+#   diffKzT         - Vertical temperature diffusivity                  (m^2/s)
+#   diffKhS         - Horizontal salt diffusivity                       (m^2/s)
+#   diffKzS         - Vertical salt diffusivity                         (m^2/s)
+#   f0              - Reference coriolis parameter,
+#                     south edge of f on beta plane                       (1/s)
+#   beta            - df/dy                                         (s^-1.m^-1)
+#   tAlpha          - Linear EOS thermal expansion coefficient           (1/oC)
+#   sBeta           - Linear EOS haline contraction coefficient         (1/ppt)
+#   gravity         - Acceleration due to gravity                       (m/s^2)
+#   gBaro           - Accel. due to gravity used in barotropic equation (m/s^2)
+#   rigidLid        - Set to true to use rigid lid
+#   implicitFreeSurface - Set to true to use implicit free surface
+#   eosType         - Flag for linear or polynomial equation of state
+#   momAdvection    - On/Off flag for momentum self transport
+#   momViscosity    - On/Off flag for momentum mixing
+#
+ &PARM01
+# WOA18 annual average T,S profiles @ 30 levels
+# tRef               = 23.22, 23.06, 22.75, 22.26, 21.74, 21.31, 20.93, 20.58,
+#                      20.27, 19.99, 19.77, 19.55, 19.33, 19.15, 18.96, 18.79,
+#                      18.61, 18.44, 18.26, 18.06, 17.82, 17.47, 16.85, 15.74,
+#                      14.09, 11.96, 9.74, 7.86, 6.51, 5.72
+# The same as initial boundary
+  tRef              = 13.2037, 13.1695, 13.1621, 13.1564, 13.1123,
+                      13.0851, 13.0813, 13.0710, 13.0998, 13.1181,
+                      13.1486, 13.2015, 13.2922, 13.36225, 13.3860,
+                      13.4098, 13.4336, 13.4901, 13.5124, 13.5285,
+                      13.5168, 13.4821, 13.4373, 13.3954, 13.3411,
+                      13.2930, 13.2451, 13.1991, 13.1758, 13.1461,
+# sRef               = 36.5466, 36.5558, 36.5691, 36.5833, 36.6016, 36.6081,
+#                      36.6136, 36.6168, 36.6138, 36.6113, 36.6068, 36.6015,
+#                      36.5956, 36.5886, 36.5804, 36.5707, 36.5600, 36.5489,
+#                      36.5354, 36.5177, 36.4898, 36.4376, 36.3314, 36.1356,
+#                      35.8647, 35.5550, 35.2843, 35.1459, 35.0970, 35.0797,
+# The same as initial boundary
+   sRef             =  38.2919, 38.2961, 38.3004, 38.3046, 38.3072,
+                       38.3092, 38.3112, 38.3201, 38.3342, 38.3450,
+                       38.3618, 38.3790, 38.4336, 38.4634, 38.4817,
+                       38.5065, 38.5338, 38.5716, 38.5868, 38.5929,
+                       38.5917, 38.5892, 38.5815, 38.5714, 38.5615,
+                       38.5489, 38.5282, 38.5129, 38.5042, 38.4915,
+ no_slip_sides=.FALSE.,
+ no_slip_bottom=.TRUE.,
+ viscAz=1.93e-5,
+ viscAh=5.E4,
+ diffKhT=0.0,
+ diffKzT=1.46e-7,
+ diffKhS=0.0,
+ diffKzS=1.46e-7,
+# beta=1.E-11,
+# 1-D setups work best with an f-plane due to unequal Coriolis force on north
+# and south faces
+ selectCoriMap=0,
+ rigidLid=.FALSE.,
+ implicitFreeSurface=.TRUE.,
+ eosType='JMD95Z',
+ readBinaryPrec=32,
+ writeBinaryPrec=32,
+ saltStepping=.TRUE.,
+ tempStepping=.TRUE.,
+ momStepping=.TRUE.,
+ implicitDiffusion=.TRUE.,
+ implicitViscosity=.TRUE.,
+ allowFreezing=.FALSE.,
+#- set wrong celsius2K to reproduce old results:
+ celsius2K=273.16,
+ HeatCapacity_Cp = 3986.0,
+ gravity         = 9.8156,
+ rhoConst        = 1027.0,
+ rhoConstFresh   = 999.8,
+ useCDscheme=.FALSE.,
+ staggerTimeStep=.TRUE.,
+ multiDimAdvection=.false.,
+ tempAdvScheme=30,
+ saltAdvScheme=30,
+ vectorInvariantMomentum=.TRUE.,
+ useRealFreshWaterFlux = .TRUE.,
+# debugLevel=1,
+ &
+
+# Elliptic solver parameters
+#
+#   cg2dMaxIters       - Maximum number of 2d solver iterations
+#   cg2dTargetResidual - Solver target residual
+#
+ &PARM02
+ cg2dMaxIters=1000,
+ cg2dTargetResidual=1.D-13,
+ &
+
+# Time stepping parameters
+#
+#   startTime         - Integration starting time                (s)
+#   endTime           - Integration ending time                  (s)
+#   tauCD             - CD scheme coupling timescale             (s)
+#   deltaTMom         - Timestep for momemtum equations          (s)
+#   deltaTtracer      - Tracer timestep                          (s)
+#   deltaTClock       - Timestep used as model "clock"           (s)
+#   abEps             - Adams-Bashforth stabilising factor
+#   pChkPtFreq        - Frequency of permanent check pointing    (s)
+#   chkPtFreq         - Frequency of rolling check pointing      (s)
+#   dumpFreq          - Frequency at which model state is stored (s)
+#   tauThetaClimRelax - Relaxation to climatology time scale     (s)
+#   tauSaltClimRelax  - Relaxation to climatology time scale     (s)
+#
+ &PARM03
+ startTime=0.0,
+# nTimeSteps= 8760,
+ nTimeSteps= 87600,
+# nTimeSteps=113880,
+# nTimeSteps=96360,
+ deltaTtracer=3600.0,
+ deltaTClock =3600.0,
+ cAdjFreq=0.,
+ abEps=0.1,
+ tracForcingOutAB=1,
+ pChkptFreq=0.,
+ chkptFreq= 0.,
+ dumpFreq = 0.,
+ taveFreq = 0.,
+ monitorFreq=864000.,
+# adjDumpFreq=86400.,
+# adjMonitorFreq = 86400.,
+# monitorFreq=3600.,
+ adjDumpFreq=3600.,
+ adjMonitorFreq=3600.,
+ &
+#
+# Gridding parameters
+#
+#   usingSphericalPolarGrid - On/Off flag for spherical polar coordinates
+#   delX                    - Zonal grid spacing         (degrees)
+#   delY                    - Meridional grid spacing    (degrees)
+#   delZ                    - Vertical grid spacing      (m)
+#   ygOrigin                - Southern boundary latitude (degrees)
+#
+ &PARM04
+ usingCartesianGrid=.TRUE.,
+ dXspacing=5000.,
+ dYspacing=5000.,
+# usingSphericalPolarGrid=.TRUE.,
+# delX=1*2.E0,
+# delY=1*2.E0,
+ delZ   = 10.00, 10.00, 10.00, 10.00, 10.00, 10.00, 10.00, 10.01,
+ 10.03, 10.11, 10.32, 10.80, 11.76, 13.42, 16.04 , 19.82, 24.85,
+ 31.10, 38.42, 46.50, 55.00, 63.50, 71.58, 82.21, 92.35, 100.00,
+ 100.00, 100.00, 100.00, 100.00,
+# ygOrigin=65.,
+# xgOrigin=280.,
+# rSphere = 6371.D3,
+ &
+
+ &PARM05
+ bathyFile='bathy_1x1_1105m_testpool',
+ hydrogThetaFile='dyfamed_bottle_pott_dec_jan_clim',
+ hydrogSaltFile='dyfamed_bottle_sal_dec_jan_clim',
+ &

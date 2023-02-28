@@ -1,0 +1,23 @@
+# RBCS package parameters:
+ &RBCS_PARM01
+ useRBCtemp=.TRUE.,
+ useRBCsalt=.TRUE.,
+ tauRelaxT=2628000.,
+ tauRelaxS=2628000.,
+ relaxMaskFile='kerfix_relax_temp_mask','kerfix_relax_salt_mask','relax_mask_30l_100a400.bin',
+ relaxTFile='ocetemp_ann_kerfix_32b.bin',
+ relaxSFile='ocesalt_ann_kerfix_32b.bin',
+ &
+
+# RBCS for pTracers (read this namelist only when ptracers pkg is compiled)
+ &RBCS_PARM02
+  useRBCptrnum(1)    = .TRUE.,
+  useRBCptrnum(18)   = .TRUE.,
+  useRBCptrnum(19)   = .TRUE.,
+  tauRelaxPTR(1)     = 2628000.,
+  tauRelaxPTR(18)    = 2628000.,
+  tauRelaxPTR(19)    = 2628000.,
+  relaxPtracerFile(1)  ='din_woa18_ann_kerfix.bin',
+  relaxPtracerFile(18) ='dsi_woa18_ann_kerfix.bin',
+  relaxPtracerFile(19) ='dfe_pisces_kerfix_32b.bin',
+ &

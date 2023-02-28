@@ -1,0 +1,42 @@
+# RBCS package parameters:
+ &RBCS_PARM01
+ useRBCtemp=.TRUE.,
+ useRBCsalt=.TRUE.,
+# useRBCtemp=.FALSE.,
+# useRBCsalt=.FALSE.,
+# tauRelaxT=2628000.,
+ tauRelaxT=432000.,
+# tauRelaxS=2628000.,
+ tauRelaxS=432000.,
+# relaxMaskFile='relax_mask_30l_100a400.bin','relax_mask_30l_100a400.bin','relax_mask_30l_100a400.bin',
+ relaxMaskFile='dyfamed_relax_mask.data','dyfamed_relax_mask.data','dyfamed_relax_mask.data',
+#dyfamed_relax_mask.data
+ relaxTFile='dyfamed_bottle_pott_dec_jan_clim',
+ relaxSFile='dyfamed_bottle_sal_dec_jan_clim',
+# relaxTFile='ocetemp_jan_medsea_DYFAMED',
+# relaxSFile='ocesalt_jan_medsea_DYFAMED',
+# relaxMaskFile='','','',
+# relaxTFile='',
+# relaxSFile='',
+
+ &
+
+# RBCS for pTracers (read this namelist only when ptracers pkg is compiled)
+ &RBCS_PARM02
+#  useRBCptrnum(1)    = .TRUE.,
+#  useRBCptrnum(18)   = .TRUE.,
+#  useRBCptrnum(19)   = .TRUE.,
+  useRBCptrnum(1)    = .FALSE.,
+  useRBCptrnum(18)   = .FALSE.,
+  useRBCptrnum(19)   = .FALSE.,
+  tauRelaxPTR(1)     = 2628000.,
+  tauRelaxPTR(18)    = 2628000.,
+  tauRelaxPTR(19)    = 2628000.,
+#
+#  relaxPtracerFile(1)  ='din_jan_BATSbottle_32b.bin',
+#  relaxPtracerFile(18) ='dsi_jan_BATSbottle_32b.bin',
+#  relaxPtracerFile(19) ='dfe_GA03_BATS_nmol_30l.bin',
+  relaxPtracerFile(1)  ='dyfamed_bottle_din_dec_jan_clim',
+  relaxPtracerFile(18) ='dyfamed_bottle_dsi_dec_jan_clim',
+  relaxPtracerFile(19) ='PROSOPE_DYF_dFe_1999_09_30',
+ &

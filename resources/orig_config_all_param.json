@@ -1,0 +1,1302 @@
+{
+    "uq": {
+        "uqAlgorithm": {
+            "outputVectorAPerturbedFile": true,
+            "outputVectorBPerturbedFile": true,
+            "outputFullAPerturbedFile": true,
+            "outputFullBPerturbedFile": false,
+            "outputSingleAPerturbedFile": false,
+            "outputSingleBPerturbedFile": false,
+            "iterations": 100000,
+            "uqMethodA": "mc",
+            "uqMethodB": "mc"
+        },
+        "sc": {
+            "level": 5
+        },
+        "randomGenerator": {
+            "generators": [{"mc":"random.uniform"}, {"qmc": "uq.sobolGenerator.generate_sobol_vector"}],
+            "sobolSeedA": -1,
+            "sobolSeedB": -1,
+            "domainTranslationA": [0, 1],
+            "domainTranslationB": [0, 1]
+        },
+        "transformer": {
+            "type": "inverseTransformWrapper.InverseTransformWrapper",
+            "overrideParameterDistribution": false,
+            "pdf": "lognormal",
+            "pdfParameters": [0, 0, 0.25]
+        },
+        "perturbator": {
+            "perturbator": "uq.inputPerturbator.InputPerturbator",
+            "inputPath": "/../resources/data.recom"
+        }
+    },
+    "model": {
+        "simulationFunction": "ishigami",
+        "qoiFileName": "result-"
+    },
+    "sa": {
+        "estimatorFunctionSi": "sa.methodDefs_estimatorFunction.estimatorFunction.jansen_Si",
+        "estimatorFunctionSTi": "sa.methodDefs_estimatorFunction.estimatorFunction.saltelli_STi",
+        "estimatorFunctionVY": "sa.methodDefs_estimatorFunction.estimatorFunction.combinedAB",
+        "bootstrapReplicas": 10000,
+        "subsampleFactor": 0.25,
+        "confidenceInterval": 0.95,
+        "qoiInputDirectory": "",
+        "useTemplates": ["BMP_npp"],
+        "templates": [
+            {
+                "BMP_npp": {
+                    "qoiExtractor": "qoiExtractor.QoiExtractor",
+                    "qoiFileName": "recomDiags2D-",
+                    "qoiVariableList": ["NETPPVIS", "NETPPVID"],
+                    "variableExtractionFunction": "full",
+                    "qoiOperatorFunction": "identity",
+                    "multiVariableOperatorFunction": "addNpList",
+                    "qoiPostProcessingFunction": "bloomMeanPeak2D"
+                }
+            },
+            {
+                "BMV_npp": {
+                    "qoiExtractor": "qoiExtractor.QoiExtractor",
+                    "qoiFileName": "recomDiags2D-",
+                    "qoiVariableList": ["NETPPVIS", "NETPPVID"],
+                    "variableExtractionFunction": "full",
+                    "qoiOperatorFunction": "identity",
+                    "multiVariableOperatorFunction": "addNpList",
+                    "qoiPostProcessingFunction": "bloomMeanValue2D"
+                }
+            },
+            {
+                "BMD_npp": {
+                    "qoiExtractor": "qoiExtractor.QoiExtractor",
+                    "qoiFileName": "recomDiags2D-",
+                    "qoiVariableList": ["NETPPVIS", "NETPPVID"],
+                    "variableExtractionFunction": "full",
+                    "qoiOperatorFunction": "identity",
+                    "multiVariableOperatorFunction": "addNpList",
+                    "qoiPostProcessingFunction": "bloomMeanDuration2D"
+                }
+            },
+            {
+                "BMP_chla_s": {
+                    "qoiExtractor": "qoiExtractor.QoiExtractor",
+                    "qoiFileName": "recomDiags3D-",
+                    "qoiVariableList": ["TRAC06", "TRAC15"],
+                    "variableExtractionFunction": "full",
+                    "qoiOperatorFunction": "identity",
+                    "multiVariableOperatorFunction": "addNpList",
+                    "qoiPostProcessingFunction": "bloomMeanPeak3DSurface"
+                }
+            },
+            {
+                "BMP_chla_a": {
+                    "qoiExtractor": "qoiExtractor.QoiExtractor",
+                    "qoiFileName": "recomDiags3D-",
+                    "qoiVariableList": ["TRAC06", "TRAC15"],
+                    "variableExtractionFunction": "full",
+                    "qoiOperatorFunction": "identity",
+                    "multiVariableOperatorFunction": "addNpList",
+                    "qoiPostProcessingFunction": "bloomMeanPeak3DAverage"
+                }
+            },
+            {
+                "BMV_chla_s": {
+                    "qoiExtractor": "qoiExtractor.QoiExtractor",
+                    "qoiFileName": "recomDiags3D-",
+                    "qoiVariableList": ["TRAC06", "TRAC15"],
+                    "variableExtractionFunction": "full",
+                    "qoiOperatorFunction": "identity",
+                    "multiVariableOperatorFunction": "addNpList",
+                    "qoiPostProcessingFunction": "bloomMeanValue3DSurface"
+                }
+            },
+            {
+                "BMV_chla_a": {
+                    "qoiExtractor": "qoiExtractor.QoiExtractor",
+                    "qoiFileName": "recomDiags3D-",
+                    "qoiVariableList": ["TRAC06", "TRAC15"],
+                    "variableExtractionFunction": "full",
+                    "qoiOperatorFunction": "identity",
+                    "multiVariableOperatorFunction": "addNpList",
+                    "qoiPostProcessingFunction": "bloomMeanValue3DAverage"
+                }
+            },
+            {
+                "BMD_chla_s": {
+                    "qoiExtractor": "qoiExtractor.QoiExtractor",
+                    "qoiFileName": "recomDiags3D-",
+                    "qoiVariableList": ["TRAC06", "TRAC15"],
+                    "variableExtractionFunction": "full",
+                    "qoiOperatorFunction": "identity",
+                    "multiVariableOperatorFunction": "addNpList",
+                    "qoiPostProcessingFunction": "bloomMeanDuration3DSurface"
+                }
+            },
+            {
+                "BMD_chla_a": {
+                    "qoiExtractor": "qoiExtractor.QoiExtractor",
+                    "qoiFileName": "recomDiags3D-",
+                    "qoiVariableList": ["TRAC06", "TRAC15"],
+                    "variableExtractionFunction": "full",
+                    "qoiOperatorFunction": "identity",
+                    "multiVariableOperatorFunction": "addNpList",
+                    "qoiPostProcessingFunction": "bloomMeanDuration3DAverage"
+                }
+            },
+            {
+                "qoiData2D": {
+                    "qoiExtractor": "qoiExtractor.QoiExtractor",
+                    "qoiFileName": "recomDiags2D-",
+                    "qoiVariableList": ["NETPPVIS", "NETPPVID"],
+                    "variableExtractionFunction": "full",
+                    "qoiOperatorFunction": "identity",
+                    "multiVariableOperatorFunction": "addNpList",
+                    "qoiPostProcessingFunction": "meanData2D"
+                }
+            },
+            {
+                "qoiData3D": {
+                    "qoiExtractor": "qoiExtractor.QoiExtractor",
+                    "qoiFileName": "recomDiags3D-",
+                    "qoiVariableList": ["TRAC06", "TRAC15"],
+                    "variableExtractionFunction": "full",
+                    "qoiOperatorFunction": "identity",
+                    "multiVariableOperatorFunction": "addNpList",
+                    "qoiPostProcessingFunction": "meanData3D"
+                }
+            },
+            {
+                "qoiData3DSurface": {
+                    "qoiExtractor": "qoiExtractor.QoiExtractor",
+                    "qoiFileName": "recomDiags3D-",
+                    "qoiVariableList": ["TRAC06", "TRAC15"],
+                    "variableExtractionFunction": "full",
+                    "qoiOperatorFunction": "identity",
+                    "multiVariableOperatorFunction": "addNpList",
+                    "qoiPostProcessingFunction": "meanData3DSurface"
+                }
+            },
+            {
+                "qoiData3DAverage": {
+                    "qoiExtractor": "qoiExtractor.QoiExtractor",
+                    "qoiFileName": "recomDiags3D-",
+                    "qoiVariableList": ["TRAC06", "TRAC15"],
+                    "variableExtractionFunction": "full",
+                    "qoiOperatorFunction": "identity",
+                    "multiVariableOperatorFunction": "addNpList",
+                    "qoiPostProcessingFunction": "meanData3DAverage"
+                }
+            },
+            {
+                "saModelTest": {
+                    "qoiExtractor": "qoiExtractor.QoiExtractor",
+                    "qoiFileName": "result-",
+                    "qoiVariableList": ["null"],
+                    "variableExtractionFunction": "scalar",
+                    "qoiOperatorFunction": "identity",
+                    "multiVariableOperatorFunction": "identity",
+                    "qoiPostProcessingFunction": "identity"
+                }
+            }
+        ]
+    },
+    "logger": {
+        "level": 0,
+        "timeStamp": true,
+        "writeToFile": true
+    },
+    "parameters": [
+        {
+            "id": 0,
+            "recomBlock": "REcoM_parameters",
+            "recomKey": "a_chl",
+            "description": "chlorophyll specific attenuation coefficients [m^{-1} (mg CHL)^{-1}]",
+            "uncertain": true,
+            "distribution": {
+                "type": "lognormal",
+                "parameters": [0, 0, 0.25]
+            }
+        },
+        {
+            "id": 1,
+            "recomBlock": "REcoM_parameters",
+            "recomKey": "k_w",
+            "description": "attenuation due to water [m^{-1}]",
+            "uncertain": false,
+            "distribution": {
+                "type": "lognormal",
+                "parameters": [0, 0, 0.25]
+            }
+        },
+        {
+            "id": 2,
+            "recomBlock": "REcoM_parameters",
+            "recomKey": "redfield",
+            "description": "constant Redfield C:N ratio",
+            "uncertain": true,
+            "distribution": {
+                "type": "lognormal",
+                "parameters": [0, 0, 0.125]
+            }
+        },
+        {
+            "id": 3,
+            "recomBlock": "REcoM_parameters",
+            "recomKey": "Ae",
+            "description": "slope of the linear part of the Arrhenius function [Kelvin]",
+            "uncertain": false,
+            "distribution": {
+                "type": "lognormal",
+                "parameters": [0, 0, 0.25]
+            }
+        },
+        {
+            "id": 4,
+            "recomBlock": "REcoM_parameters",
+            "recomKey": "recom_Tref",
+            "description": "reference temperature [Kelvin]",
+            "uncertain": false,
+            "distribution": {
+                "type": "normal",
+                "parameters": [0, 1, 0.25]
+            }
+        },
+        {
+            "id": 5,
+            "recomBlock": "REcoM_parameters",
+            "recomKey": "tiny",
+            "description": "minimum concentration of biogeochemical variables",
+            "uncertain": false,
+            "distribution": {
+                "type": "normal",
+                "parameters": [0, 1, 0.0025]
+            }
+        },
+        {
+            "id": 6,
+            "recomBlock": "REcoM_parameters",
+            "recomKey": "bio_step",
+            "description": "number of  timesteps per external timestep",
+            "uncertain": false,
+            "distribution": {
+                "type": "constant",
+                "parameters": [0, 0, 0]
+            }
+        },
+        {
+            "id": 7,
+            "recomBlock": "REcoM_parameters",
+            "recomKey": "alpha",
+            "description": "CHL-specific intial slope of P-I curve [depends on unit of radiation]",
+            "uncertain": true,
+            "distribution": {
+                "type": "lognormal",
+                "parameters": [0, 0, 0.25]
+            }
+        },
+        {
+            "id": 8,
+            "recomBlock": "REcoM_parameters",
+            "recomKey": "P_cm",
+            "description": "Temperature dependent maximum of C-specific rate of photosynthesis [d^{-1}], set to zero to turn off biology",
+            "uncertain": true,
+            "distribution": {
+                "type": "gamma",
+                "parameters": [0, 0, 4.0]
+            }
+        },
+        {
+            "id": 9,
+            "recomBlock": "REcoM_parameters",
+            "recomKey": "CHL_N_max",
+            "description": "Maximum Chlorophyll a to nitrogen ratio [mg CHL (mmol N)^{-1} = 0.3 gCHL (gN)^{-1}]",
+            "uncertain": true,
+            "distribution": {
+                "type": "lognormal",
+                "parameters": [0, 0, 0.25]
+            }
+        },
+        {
+            "id": 10,
+            "recomBlock": "REcoM_parameters",
+            "recomKey": "k_din",
+            "description": "Half-saturation constant for nitrate uptake [mmol N m^{-3}]",
+            "uncertain": true,
+            "distribution": {
+                "type": "lognormal",
+                "parameters": [0, 0, 0.25]
+            }
+        },
+        {
+            "id": 11,
+            "recomBlock": "REcoM_parameters",
+            "recomKey": "V_cm_fact",
+            "description": "Temperature dependent maximum of C-specific nitrogen uptake [dimensionless factor]",
+            "uncertain": true,
+            "distribution": {
+                "type": "beta",
+                "parameters": [0, 4.1, 1.75714286]
+            }
+        },
+        {
+            "id": 12,
+            "recomBlock": "REcoM_parameters",
+            "recomKey": "res_phy",
+            "description": "Maintenance respiration rate constant [d^{-1}]",
+            "uncertain": true,
+            "distribution": {
+                "type": "gamma",
+                "parameters": [0, 0, 4]
+            }
+        },
+        {
+            "id": 13,
+            "recomBlock": "REcoM_parameters",
+            "recomKey": "biosynth",
+            "description": "Cost of biosynthesis [mmol C (mmol N)^{-1}]",
+            "uncertain": true,
+            "distribution": {
+                "type": "lognormal",
+                "parameters": [0, 0, 0.25]
+            }
+        },
+        {
+            "id": 14,
+            "recomBlock": "REcoM_parameters",
+            "recomKey": "deg_CHL",
+            "description": "CHL degradation rate constant [d^{-1}]",
+            "uncertain": true,
+            "distribution": {
+                "type": "gamma",
+                "parameters": [0, 0, 4]
+            }
+        },
+        {
+            "id": 15,
+            "recomBlock": "REcoM_parameters",
+            "recomKey": "lossN",
+            "description": "phytoplankton loss of organic N compounds [d^{-1}]",
+            "uncertain": true,
+            "distribution": {
+                "type": "gamma",
+                "parameters": [0, 0, 4]
+            }
+        },
+        {
+            "id": 16,
+            "recomBlock": "REcoM_parameters",
+            "recomKey": "lossC",
+            "description": "phytoplankton loss of C [d^{-1}]",
+            "uncertain": true,
+            "distribution": {
+                "type": "gamma",
+                "parameters": [0, 0, 4]
+            }
+        },
+        {
+            "id": 17,
+            "recomBlock": "REcoM_parameters",
+            "recomKey": "NCmin",
+            "description": "Minimum cell quota of nitrogen (N:C) [mmol N (mmol C)^{-1}]",
+            "uncertain": true,
+            "distribution": {
+                "type": "beta",
+                "parameters": [0, 23.96, 575.04]
+            }
+        },
+        {
+            "id": 18,
+            "recomBlock": "REcoM_parameters",
+            "recomKey": "NCmax",
+            "description": "Maximum cell quota of nitrogen (N:C) [mmol N (mmol C)^{-1}]",
+            "uncertain": true,
+            "distribution": {
+                "type": "beta",
+                "parameters": [0, 19.8, 79.2]
+            }
+        },
+        {
+            "id": 19,
+            "recomBlock": "REcoM_parameters",
+            "recomKey": "NCuptakeRatio",
+            "description": "N:C uptake ratio (mol/mol)",
+            "uncertain": true,
+            "distribution": {
+                "type": "beta",
+                "parameters": [0, 3.0, 12.0]
+            }
+        },
+        {
+            "id": 20,
+            "recomBlock": "REcoM_parameters",
+            "recomKey": "Fe2N",
+            "description": "iron to carbon ratio # instead use reference Fe2N ratio # Fe2C = 0.005,",
+            "uncertain": true,
+            "distribution": {
+                "type": "beta",
+                "parameters": [0, 3.835, 112.37712121]
+            }
+        },
+        {
+            "id": 21,
+            "recomBlock": "REcoM_parameters",
+            "recomKey": "k_Fe",
+            "description": "half saturation constant for iron uptake  [mumol Fe m^{-3}]",
+            "uncertain": true,
+            "distribution": {
+                "type": "lognormal",
+                "parameters": [0, 0, 0.25]
+            }
+        },
+        {
+            "id": 22,
+            "recomBlock": "REcoM_parameters",
+            "recomKey": "calc_prod_ratio",
+            "description": "ratio of calcifiers to non calcifiers",
+            "uncertain": true,
+            "distribution": {
+                "type": "beta",
+                "parameters": [0, 3.95, 391.05]
+            }
+        },
+        {
+            "id": 23,
+            "recomBlock": "REcoM_parameters",
+            "recomKey": "alpha_d",
+            "description": "CHL-specific intial slope of P-I curve [depends on unit of radiation]",
+            "uncertain": true,
+            "distribution": {
+                "type": "lognormal",
+                "parameters": [0, 0, 0.25]
+            }
+        },
+        {
+            "id": 24,
+            "recomBlock": "REcoM_parameters",
+            "recomKey": "P_cm_d",
+            "description": "Temperature dependent maximum of C-specific rate of photosynthesis [d^{-1}], set to zero to turn off biology",
+            "uncertain": true,
+            "distribution": {
+                "type": "gamma",
+                "parameters": [0, 0, 4]
+            }
+        },
+        {
+            "id": 25,
+            "recomBlock": "REcoM_parameters",
+            "recomKey": "CHL_N_max_d",
+            "description": "Maximum Chlorophyll a to nitrogen ratio [mg CHL (mmol N)^{-1} = 0.3 gCHL (gN)^{-1}]",
+            "uncertain": true,
+            "distribution": {
+                "type": "lognormal",
+                "parameters": [0, 0, 0.25]
+            }
+        },
+        {
+            "id": 26,
+            "recomBlock": "REcoM_parameters",
+            "recomKey": "k_din_d",
+            "description": "Half-saturation constant for nitrate uptake [mmol N m^{-3}]",
+            "uncertain": true,
+            "distribution": {
+                "type": "lognormal",
+                "parameters": [0, 0, 0.25]
+            }
+        },
+        {
+            "id": 27,
+            "recomBlock": "REcoM_parameters",
+            "recomKey": "V_cm_fact_d",
+            "description": "Temperature dependent maximum of C-specific nitrogen uptake [mmol N (mmol C)^{-1} d^{-1}] # V_cm = , dimensionless factor",
+            "uncertain": true,
+            "distribution": {
+                "type": "beta",
+                "parameters": [0, 4.1, 1.75714286]
+            }
+        },
+        {
+            "id": 28,
+            "recomBlock": "REcoM_parameters",
+            "recomKey": "res_phy_d",
+            "description": "Maintenance respiration rate constant [d^{-1}]",
+            "uncertain": true,
+            "distribution": {
+                "type": "gamma",
+                "parameters": [0, 0, 4]
+            }
+        },
+        {
+            "id": 29,
+            "recomBlock": "REcoM_parameters",
+            "recomKey": "biosynth_d",
+            "description": "Cost of biosynthesis [mmol C (mmol N)^{-1}]",
+            "uncertain": true,
+            "distribution": {
+                "type": "lognormal",
+                "parameters": [0, 0, 0.25]
+            }
+        },
+        {
+            "id": 30,
+            "recomBlock": "REcoM_parameters",
+            "recomKey": "biosynthSi",
+            "description": "2. Cost of biosynthesis [mmol C (mmol N)^{-1}]",
+            "uncertain": false,
+            "distribution": {
+                "type": "lognormal",
+                "parameters": [0, 0, 0.25]
+            }
+        },
+        {
+            "id": 31,
+            "recomBlock": "REcoM_parameters",
+            "recomKey": "deg_CHL_d",
+            "description": "CHL degradation rate constant [d^{-1}]",
+            "uncertain": true,
+            "distribution": {
+                "type": "gamma",
+                "parameters": [0, 0, 4]
+            }
+        },
+        {
+            "id": 32,
+            "recomBlock": "REcoM_parameters",
+            "recomKey": "lossN_d",
+            "description": "phytoplankton loss of organic N compounds [d^{-1}]",
+            "uncertain": true,
+            "distribution": {
+                "type": "gamma",
+                "parameters": [0, 0, 4]
+            }
+        },
+        {
+            "id": 33,
+            "recomBlock": "REcoM_parameters",
+            "recomKey": "lossC_d",
+            "description": "phytoplankton loss of C [d^{-1}]",
+            "uncertain": true,
+            "distribution": {
+                "type": "gamma",
+                "parameters": [0, 0, 4]
+            }
+        },
+        {
+            "id": 34,
+            "recomBlock": "REcoM_parameters",
+            "recomKey": "NCmin_d",
+            "description": "Minimum cell quota of nitrogen (N:C) [mmol N (mmol C)^{-1}]",
+            "uncertain": true,
+            "distribution": {
+                "type": "beta",
+                "parameters": [0, 23.96, 575.04]
+            }
+        },
+        {
+            "id": 35,
+            "recomBlock": "REcoM_parameters",
+            "recomKey": "NCmax_d",
+            "description": "Maximum cell quota of nitrogen (N:C) [mmol N (mmol C)^{-1}]",
+            "uncertain": true,
+            "distribution": {
+                "type": "beta",
+                "parameters": [0, 19.8, 79.2]
+            }
+        },
+        {
+            "id": 36,
+            "recomBlock": "REcoM_parameters",
+            "recomKey": "NCuptakeRatio_d",
+            "description": " Diatom N:C [mmol N (mmol C)^{-1}]",
+            "uncertain": true,
+            "distribution": {
+                "type": "beta",
+                "parameters": [0, 3.0, 12.0]
+            }
+        },
+        {
+            "id": 37,
+            "recomBlock": "REcoM_parameters",
+            "recomKey": "SiCmin",
+            "description": "Maximum cell quota of silica (Si:C) [mmol Si (mmol C)^{-1}]",
+            "uncertain": true,
+            "distribution": {
+                "type": "beta",
+                "parameters": [0, 23.96, 575.04]
+            }
+        },
+        {
+            "id": 38,
+            "recomBlock": "REcoM_parameters",
+            "recomKey": "SiCmax",
+            "description": "2. Maximum cell quota of silica (Si:C) [mmol Si (mmol C)^{-1}]",
+            "uncertain": true,
+            "distribution": {
+                "type": "beta",
+                "parameters": [0, 12.0, 3.0]
+            }
+        },
+        {
+            "id": 39,
+            "recomBlock": "REcoM_parameters",
+            "recomKey": "SiCuptakeRatio",
+            "description": "3. Maximum cell quota of silica (Si:C) [mmol Si (mmol C)^{-1}]",
+            "uncertain": true,
+            "distribution": {
+                "type": "beta",
+                "parameters": [0, 3.0, 12.0]
+            }
+        },
+        {
+            "id": 40,
+            "recomBlock": "REcoM_parameters",
+            "recomKey": "SiNmin",
+            "description": "minimum silica to nitrogen ratio",
+            "uncertain": true,
+            "distribution": {
+                "type": "beta",
+                "parameters": [0, 17.2, 40.13333333]
+            }
+        },
+        {
+            "id": 41,
+            "recomBlock": "REcoM_parameters",
+            "recomKey": "k_Si",
+            "description": "half saturation constant for silica uptake [mmol Si m^{-3}]",
+            "uncertain": true,
+            "distribution": {
+                "type": "lognormal",
+                "parameters": [0, 0, 0.25]
+            }
+        },
+        {
+            "id": 42,
+            "recomBlock": "REcoM_parameters",
+            "recomKey": "Fe2N_d",
+            "description": "iron to carbon ratio instead use reference Fe2N ratio Fe2C_d = 0.005,",
+            "uncertain": true,
+            "distribution": {
+                "type": "beta",
+                "parameters": [0, 3.835, 112.37712121]
+            }
+        },
+        {
+            "id": 43,
+            "recomBlock": "REcoM_parameters",
+            "recomKey": "k_Fe_d",
+            "description": "half saturation constant for iron uptake  [mumol Fe m^{-3}]",
+            "uncertain": true,
+            "distribution": {
+                "type": "lognormal",
+                "parameters": [0, 0, 0.25]
+            }
+        },
+        {
+            "id": 44,
+            "recomBlock": "REcoM_parameters",
+            "recomKey": "reminN",
+            "description": "temperature dependent remineralisation rate of detritus [d^{-1}]",
+            "uncertain": true,
+            "distribution": {
+                "type": "gamma",
+                "parameters": [0, 0, 4]
+            }
+        },
+        {
+            "id": 45,
+            "recomBlock": "REcoM_parameters",
+            "recomKey": "reminC",
+            "description": "2. temperature dependent remineralisation rate of detritus [d^{-1}]",
+            "uncertain": true,
+            "distribution": {
+                "type": "gamma",
+                "parameters": [0, 0, 4]
+            }
+        },
+        {
+            "id": 46,
+            "recomBlock": "REcoM_parameters",
+            "recomKey": "reminSi",
+            "description": "3. temperature dependent remineralisation rate of detritus [d^{-1}]",
+            "uncertain": true,
+            "distribution": {
+                "type": "gamma",
+                "parameters": [0, 0, 4]
+            }
+        },
+        {
+            "id": 47,
+            "recomBlock": "REcoM_parameters",
+            "recomKey": "useReminSiT",
+            "description": "4. temperature dependent remineralisation rate of detritus [d^{-1}]",
+            "uncertain": false,
+            "distribution": {
+                "type": "NA",
+                "parameters": [0, 0, 4]
+            }
+        },
+        {
+            "id": 48,
+            "recomBlock": "REcoM_parameters",
+            "recomKey": "Vphy",
+            "description": "phytoplankton sinking velocity [ m d^{-1} ]",
+            "uncertain": false,
+            "distribution": {
+                "type": "gamma",
+                "parameters": [0, 0, 4]
+            }
+        },
+        {
+            "id": 49,
+            "recomBlock": "REcoM_parameters",
+            "recomKey": "Vdia",
+            "description": "phytoplankton sinking velocity [ m d^{-1} ]",
+            "uncertain": false,
+            "distribution": {
+                "type": "lognormal",
+                "parameters": [0, 0, 0.25]
+            }
+        },
+        {
+            "id": 50,
+            "recomBlock": "REcoM_parameters",
+            "recomKey": "Vdet",
+            "description": "detritus sinking velocity [ m d^{-1} ]",
+            "uncertain": true,
+            "distribution": {
+                "type": "gamma",
+                "parameters": [0, 0, 4]
+            }
+        },
+        {
+            "id": 51,
+            "recomBlock": "REcoM_parameters",
+            "recomKey": "res_het",
+            "description": "respiration by heterotrophs and mortality (loss to detritus) [d^{-1}]",
+            "uncertain": true,
+            "distribution": {
+                "type": "lognormal",
+                "parameters": [0, 0, 0.25]
+            }
+        },
+        {
+            "id": 52,
+            "recomBlock": "REcoM_parameters",
+            "recomKey": "loss_het",
+            "description": "respiration by heterotrophs and mortality (loss to detritus) [d^{-1}]",
+            "uncertain": true,
+            "distribution": {
+                "type": "gamma",
+                "parameters": [0, 0, 4]
+            }
+        },
+        {
+            "id": 53,
+            "recomBlock": "REcoM_parameters",
+            "recomKey": "lossC_z",
+            "description": "loss of zooplank to dissolved organic compounds",
+            "uncertain": true,
+            "distribution": {
+                "type": "gamma",
+                "parameters": [0, 0, 4]
+            }
+        },
+        {
+            "id": 54,
+            "recomBlock": "REcoM_parameters",
+            "recomKey": "lossN_z",
+            "description": "loss of zooplank to dissolved organic compounds",
+            "uncertain": true,
+            "distribution": {
+                "type": "gamma",
+                "parameters": [0, 0, 4]
+            }
+        },
+        {
+            "id": 55,
+            "recomBlock": "REcoM_parameters",
+            "recomKey": "rho_N",
+            "description": "temperature dependent N degradation of extracellular organic N (EON) [d^{-1}]",
+            "uncertain": true,
+            "distribution": {
+                "type": "gamma",
+                "parameters": [0, 0, 4]
+            }
+        },
+        {
+            "id": 56,
+            "recomBlock": "REcoM_parameters",
+            "recomKey": "rho_C1",
+            "description": "temperature dependent C degradation of extracellular organic C (EOC) [d^{-1}]",
+            "uncertain": true,
+            "distribution": {
+                "type": "gamma",
+                "parameters": [0, 0, 4]
+            }
+        },
+        {
+            "id": 57,
+            "recomBlock": "REcoM_parameters",
+            "recomKey": "rho_C2",
+            "description": "temperature dependent C degradation of extracellular organic C (EOC) [d^{-1}]",
+            "uncertain": true,
+            "distribution": {
+                "type": "lognormal",
+                "parameters": [0, 0, 0.25]
+            }
+        },
+        {
+            "id": 58,
+            "recomBlock": "REcoM_parameters",
+            "recomKey": "graz_max",
+            "description": "maximum grazing loss parameter [mmol N m^{-3} d^{-1}]  ",
+            "uncertain": true,
+            "distribution": {
+                "type": "gamma",
+                "parameters": [0, 0, 4]
+            }
+        },
+        {
+            "id": 59,
+            "recomBlock": "REcoM_parameters",
+            "recomKey": "grazEff",
+            "description": "grazing effeciency",
+            "uncertain": true,
+            "distribution": {
+                "type": "beta",
+                "parameters": [0, 2.0, 3.0]
+            }
+        },
+        {
+            "id": 60,
+            "recomBlock": "REcoM_parameters",
+            "recomKey": "epsilon",
+            "description": "half saturation grazing loss [mmol N^{2} m^{-6}]",
+            "uncertain": true,
+            "distribution": {
+                "type": "lognormal",
+                "parameters": [0, 0, 0.25]
+            }
+        },
+        {
+            "id": 61,
+            "recomBlock": "REcoM_parameters",
+            "recomKey": "agg_PD",
+            "description": "maximum aggregation loss parameters [m^{3} mmol N^{-1} d^{-1}]",
+            "uncertain": true,
+            "distribution": {
+                "type": "gamma",
+                "parameters": [0, 0, 4]
+            }
+        },
+        {
+            "id": 62,
+            "recomBlock": "REcoM_parameters",
+            "recomKey": "agg_PP",
+            "description": "maximum aggregation loss parameters [m^{3} mmol N^{-1} d^{-1}]",
+            "uncertain": true,
+            "distribution": {
+                "type": "gamma",
+                "parameters": [0, 0, 4]
+            }
+        },
+        {
+            "id": 63,
+            "recomBlock": "REcoM_parameters",
+            "recomKey": "TEPaggregation",
+            "description": "turn on/off TEP aggregation",
+            "uncertain": false,
+            "distribution": {
+                "type": "NA",
+                "parameters": [0, 0, 0.25]
+            }
+        },
+        {
+            "id": 64,
+            "recomBlock": "REcoM_parameters",
+            "recomKey": "f_TEP",
+            "description": "TEP fraction (dimensionless)",
+            "uncertain": false,
+            "distribution": {
+                "type": "lognormal",
+                "parameters": [0, 0, 0.25]
+            }
+        },
+        {
+            "id": 65,
+            "recomBlock": "REcoM_parameters",
+            "recomKey": "x",
+            "description": "TEP fraction (f_TEP-x) found in POM (dimensionless)",
+            "uncertain": false,
+            "distribution": {
+                "type": "lognormal",
+                "parameters": [0, 0, 0.25]
+            }
+        },
+
+        {
+            "id": 66,
+            "recomBlock": "REcoM_parameters",
+            "recomKey": "agg_PCHO",
+            "description": "stickiness for PCHO-PCHO ",
+            "uncertain": true,
+            "distribution": {
+                "type": "lognormal",
+                "parameters": [0, 0, 0.25]
+            }
+        },
+        {
+            "id": 67,
+            "recomBlock": "REcoM_parameters",
+            "recomKey": "agg_TEP",
+            "description": "stickiness for TEP-PCHO ",
+            "uncertain": true,
+            "distribution": {
+                "type": "lognormal",
+                "parameters": [0, 0, 0.25]
+            }
+        },
+        {
+            "id": 68,
+            "recomBlock": "REcoM_parameters",
+            "recomKey": "kScavFe",
+            "description": "Iron scavenging (to turn off set kScavFe=0.)",
+            "uncertain": true,
+            "distribution": {
+                "type": "lognormal",
+                "parameters": [0, 0, 0.25]
+            }
+        },
+        {
+            "id": 69,
+            "recomBlock": "REcoM_parameters",
+            "recomKey": "totalLigand",
+            "description": "Iron scavenging ",
+            "uncertain": false,
+            "distribution": {
+                "type": "lognormal",
+                "parameters": [0, 0, 0.25]
+            }
+        },
+        {
+            "id": 70,
+            "recomBlock": "REcoM_parameters",
+            "recomKey": "ligandStabConst",
+            "description": "Iron scavenging ",
+            "uncertain": false,
+            "distribution": {
+                "type": "lognormal",
+                "parameters": [0, 0, 0.25]
+            }
+        },
+        {
+            "id": 71,
+            "recomBlock": "REcoM_parameters",
+            "recomKey": "Fe2N_benthos",
+            "description": "Iron scavenging ",
+            "uncertain": true,
+            "distribution": {
+                "type": "lognormal",
+                "parameters": [0, 0, 0.25]
+            }
+        },
+        {
+            "id": 72,
+            "recomBlock": "REcoM_parameters",
+            "recomKey": "decayRateBenN",
+            "description": "decay rate of detritus in the benthic layer, product of remin*rho [d^{-1}], turn off benthic layer with values < 0.",
+            "uncertain": true,
+            "distribution": {
+                "type": "gamma",
+                "parameters": [0, 0, 4]
+            }
+        },
+        {
+            "id": 73,
+            "recomBlock": "REcoM_parameters",
+            "recomKey": "decayRateBenC",
+            "description": "decay rate of detritus in the benthic layer, product of remin*rho [d^{-1}], turn off benthic layer with values < 0.",
+            "uncertain": true,
+            "distribution": {
+                "type": "gamma",
+                "parameters": [0, 0, 4]
+            }
+        },
+        {
+            "id": 74,
+            "recomBlock": "REcoM_parameters",
+            "recomKey": "decayRateBenSi",
+            "description": "decay rate of detritus in the benthic layer, product of remin*rho [d^{-1}], turn off benthic layer with values < 0.",
+            "uncertain": true,
+            "distribution": {
+                "type": "gamma",
+                "parameters": [0, 0, 4]
+            }
+        },
+        {
+            "id": 75,
+            "recomBlock": "REcoM_parameters",
+            "recomKey": "SINKadv",
+            "description": "turn on/off sinking of detritus and phytoplankton",
+            "uncertain": false,
+            "distribution": {
+                "type": "NA",
+                "parameters": [0, 0, 0]
+            }
+        },
+        {
+            "id": 76,
+            "recomBlock": "REcoM_parameters",
+            "recomKey": "EvansParslow",
+            "description": "light utilization according to Evans+Parslow (1985), requires the daily mean insolation as input, e.g. shortwave radiation of a NCEP or ECMWF product",
+            "uncertain": false,
+            "distribution": {
+                "type": "NA",
+                "parameters": [0, 0, 0]
+            }
+        },
+        {
+            "id": 77,
+            "recomBlock": "REcoM_parameters",
+            "recomKey": "write_flag",
+            "description": "have S/R REcoM_para_read produce some extra output",
+            "uncertain": false,
+            "distribution": {
+                "type": "NA",
+                "parameters": [0, 0, 0]
+            }
+        },
+        {
+            "id": 78,
+            "recomBlock": "REcoM_parameters",
+            "recomKey": "FeLimit",
+            "description": "turn on/off iron limitation",
+            "uncertain": false,
+            "distribution": {
+                "type": "NA",
+                "parameters": [0, 0, 0]
+            }
+        },
+        {
+            "id": 79,
+            "recomBlock": "RECOM_PARM01",
+            "recomKey": "recom_ironFile",
+            "description": "",
+            "uncertain": false,
+            "distribution": {
+                "type": "NA",
+                "parameters": [0, 0, 0]
+            }
+        },
+        {
+            "id": 80,
+            "recomBlock": "RECOM_PARM01",
+            "recomKey": "brockReedInsolation",
+            "description": "",
+            "uncertain": false,
+            "distribution": {
+                "type": "NA",
+                "parameters": [0, 0, 0]
+            }
+        },
+        {
+            "id": 81,
+            "recomBlock": "RECOM_PARM01",
+            "recomKey": "diurnalInsolation",
+            "description": "",
+            "uncertain": false,
+            "distribution": {
+                "type": "NA",
+                "parameters": [0, 0, 0]
+            }
+        },
+        {
+            "id": 82,
+            "recomBlock": "RECOM_PARM01",
+            "recomKey": "computeHalos",
+            "description": "",
+            "uncertain": false,
+            "distribution": {
+                "type": "NA",
+                "parameters": [0, 0, 0]
+            }
+        },
+        {
+            "id": 83,
+            "recomBlock": "RECOM_PARM01",
+            "recomKey": "solarConstant",
+            "description": "",
+            "uncertain": false,
+            "distribution": {
+                "type": "NA",
+                "parameters": [0, 0, 0]
+            }
+        },
+        {
+            "id": 84,
+            "recomBlock": "RECOM_PARM01",
+            "recomKey": "parfrac",
+            "description": "",
+            "uncertain": false,
+            "distribution": {
+                "type": "NA",
+                "parameters": [0, 0, 0]
+            }
+        },
+        {
+            "id": 85,
+            "recomBlock": "RECOM_PARM01",
+            "recomKey": "cloudCover",
+            "description": "",
+            "uncertain": false,
+            "distribution": {
+                "type": "NA",
+                "parameters": [0, 0, 0]
+            }
+        },
+        {
+            "id": 86,
+            "recomBlock": "RECOM_PARM01",
+            "recomKey": "daysPerYear",
+            "description": "",
+            "uncertain": false,
+            "distribution": {
+                "type": "NA",
+                "parameters": [0, 0, 0]
+            }
+        },
+        {
+            "id": 87,
+            "recomBlock": "RECOM_PARM01",
+            "recomKey": "constantIronSolubility",
+            "description": "",
+            "uncertain": false,
+            "distribution": {
+                "type": "NA",
+                "parameters": [0, 0, 0]
+            }
+        },
+        {
+            "id": 88,
+            "recomBlock": "RECOM_PARM01",
+            "recomKey": "recom_FeErosionRate",
+            "description": "",
+            "uncertain": false,
+            "distribution": {
+                "type": "NA",
+                "parameters": [0, 0, 0]
+            }
+        },
+        {
+            "id": 89,
+            "recomBlock": "RECOM_PARM02",
+            "recomKey": "pCO2startdate1",
+            "description": "",
+            "uncertain": false,
+            "distribution": {
+                "type": "NA",
+                "parameters": [0, 0, 0]
+            }
+        },
+        {
+            "id": 90,
+            "recomBlock": "RECOM_PARM02",
+            "recomKey": "pCO2period",
+            "description": "",
+            "uncertain": false,
+            "distribution": {
+                "type": "NA",
+                "parameters": [0, 0, 0]
+            }
+        },
+        {
+            "id": 91,
+            "recomBlock": "RECOM_PARM02",
+            "recomKey": "pCO2repeatperiod",
+            "description": "",
+            "uncertain": false,
+            "distribution": {
+                "type": "NA",
+                "parameters": [0, 0, 0]
+            }
+        },
+        {
+            "id": 92,
+            "recomBlock": "RECOM_PARM02",
+            "recomKey": "feduststartdate1",
+            "description": "",
+            "uncertain": false,
+            "distribution": {
+                "type": "NA",
+                "parameters": [0, 0, 0]
+            }
+        },
+        {
+            "id": 93,
+            "recomBlock": "RECOM_PARM02",
+            "recomKey": "fedustperiod",
+            "description": "",
+            "uncertain": false,
+            "distribution": {
+                "type": "NA",
+                "parameters": [0, 0, 0]
+            }
+        },
+        {
+            "id": 94,
+            "recomBlock": "RECOM_PARM02",
+            "recomKey": "fedustrepeatperiod",
+            "description": "",
+            "uncertain": false,
+            "distribution": {
+                "type": "NA",
+                "parameters": [0, 0, 0]
+            }
+        },
+        {
+            "id": 95,
+            "recomBlock": "RECOM_ATMOSPCO2",
+            "recomKey": "recom_pco2_int1",
+            "description": "",
+            "uncertain": false,
+            "distribution": {
+                "type": "NA",
+                "parameters": [0, 0, 0]
+            }
+        },
+        {
+            "id": 96,
+            "recomBlock": "RECOM_ATMOSPCO2",
+            "recomKey": "recom_pco2_int2",
+            "description": "",
+            "uncertain": false,
+            "distribution": {
+                "type": "NA",
+                "parameters": [0, 0, 0]
+            }
+        },
+        {
+            "id": 97,
+            "recomBlock": "RECOM_ATMOSPCO2",
+            "recomKey": "recom_pco2_int3",
+            "description": "",
+            "uncertain": false,
+            "distribution": {
+                "type": "NA",
+                "parameters": [0, 0, 0]
+            }
+        },
+        {
+            "id": 98,
+            "recomBlock": "RECOM_ATMOSPCO2",
+            "recomKey": "recom_pco2_int4",
+            "description": "",
+            "uncertain": false,
+            "distribution": {
+                "type": "NA",
+                "parameters": [0, 0, 0]
+            }
+        }
+    ]
+}
