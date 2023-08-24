@@ -17,7 +17,7 @@ export LD_LIBRARY_PATH="/sw/dataformats/netcdf/intel.19/4.7.4/skl/lib/:$LD_LIBRA
 export NAMELISTDIR=/scratch/usr/hbknama0/GSA/namelists/dyfamed
 export DATADIR=/scratch/usr/hbknama0/GSA/input_fields/dyfamed
 export MODELDIR=/scratch/usr/hbknama0/GSA/model
-export SAMPLEDIR=/home/hbknama0/param_sample/sample_all_100k/data
+export SAMPLEDIR=/home/hbknama0/param_sample/DGSM
 export OUTPUTSDIR=/scratch/usr/hbknama0/GSA/model_outputs/dyfamed
 export TMPDIR=/tmp
 if [ ! -d "$LOCAL_TMPDIR" ]; then
@@ -38,5 +38,5 @@ $parallel "mkdir $LOCAL_TMPDIR/bin-{} \
   && mv recomDiags2D.0000000000.t001.nc $OUTPUTSDIR/dyfamed_diags2d_{} \
   && mv recomDiags3D.0000000000.t001.nc $OUTPUTSDIR/dyfamed_diags3d_{} \
   && cd .. \
-  && rm -r $LOCAL_TMPDIR/bin-{}" ::: {020001..030000}
+  && rm -r $LOCAL_TMPDIR/bin-{}" ::: {12601..18900}
 #
