@@ -1,1 +1,1 @@
-Code for Mamnun, N., Völker, C., Krumscheid, S., Vrekoussis, M., and Nerger, L. Global sensitivity analysis of a one-dimensional ocean biogeochemical model.
+Code for Mamnun, N., Völker, C., Krumscheid, S., Vrekoussis, M., & Nerger, L. (2023). Global sensitivity analysis of a one-dimensional ocean biogeochemical model. Socio-Environmental Systems Modelling, 5, 18613. https://doi.org/10.18174/sesmo.18613
